@@ -27,8 +27,8 @@ public class Tree {
 
     // traverse tree and store preorder and postorder numbering of the nodes
     public void traverse() {
-        //For the preOrder
-        preorder[0] = root;//In preOrder the root Node always goes first
+        //For the preorder
+        preorder[0] = root;//In preorder the root Node always goes first
         
     }
 
