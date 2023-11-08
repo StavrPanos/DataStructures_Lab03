@@ -2,6 +2,7 @@ import java.io.*;
 
 public class Tree {
 
+    private AdjacencyList adjacencyList; // the adjacency lists
     private final int N;              // number of tree nodes
     private int[] preorder;        // preorder numbering of nodes
     private int[] postorder;      // postorder numbering of nodes
@@ -13,13 +14,22 @@ public class Tree {
         preorder = new int[N];
         postorder = new int[N];
 
-        AdjacencyList adjacencyList = new AdjacencyList(parent);//Create the adjacency lists of each Node;
-        adjacencyList.printAdjacencyList();
+        //First find the root
+        for(int i = 0; i < parent.length; i++){
+            if(parent[i] == i){
+                root = i;
+            }
+        }
+
+        adjacencyList = new AdjacencyList(parent);//Create the adjacency lists of each Node;
+        //adjacencyList.printAdjacencyList(); //FOR DEBUGGING
     }
 
     // traverse tree and store preorder and postorder numbering of the nodes
     public void traverse() {
-        /* enter your code */
+        //For the preOrder
+        preorder[0] = root;//In preOrder the root Node always goes first
+        
     }
 
     // test if v is an ancestor of w
@@ -59,7 +69,7 @@ public class Tree {
         }
 
         Tree T = (Tree) new Tree(n, parent);
-        // T.traverse();
+         T.traverse();
 
         // int w = n / 4;
         // int u = n / 2;

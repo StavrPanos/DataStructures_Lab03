@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.io.*;
 
 public class AdjacencyList{
@@ -16,6 +17,11 @@ public class AdjacencyList{
             if(parent[child] != child){//If it's not the root Node
                 adjacencyList.get(parent[child]).add(child);
             }
+        }
+
+        //Reverse the lists
+        for(int i = 0; i < parent.length; i++){
+            Collections.reverse(adjacencyList.get(i));
         }
     }
 
