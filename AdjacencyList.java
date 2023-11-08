@@ -19,10 +19,10 @@ public class AdjacencyList{
             }
         }
 
-        // //Reverse the lists
-        // for(int i = 0; i < parent.length; i++){
-        //     Collections.reverse(adjacencyList.get(i));
-        // }
+        //Reverse the lists
+        for(int i = 0; i < parent.length; i++){
+            Collections.reverse(adjacencyList.get(i));
+        }
     }
 
     //Getter 

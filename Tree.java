@@ -28,9 +28,10 @@ public class Tree {
     // traverse tree and store preorder and postorder numbering of the nodes
     public void traverse() {
         Stack<Integer> preorderStack = new Stack<>(); //The stack used for the preorder
-        Stack<Integer> postorderStack = new Stack<>(); //The stack used for the postorder
+        Stack<Integer> postorderStack1 = new Stack<>(); //The first stack used for the postorder
+        Stack<Integer> postorderStack2 = new Stack<>(); //The second stack used for the postorder
         int preorderCounter = 0;
-        int postOrderCounter = 0;
+        int postorderCounter = 0;
 
         //For the preorder
         preorderStack.push(root); //First put the root in the stack
@@ -43,7 +44,24 @@ public class Tree {
         }
 
         //For the postorder
-        postorderStack.push(root); //First put the root in the stack
+        postorderStack1.push(root); //First put the root in the stack
+        while(!postorderStack1.isEmpty()){
+            postorder[postorderCounter] = postorderStack1.pop();
+            postorderStack2.push(postorder[postorderCounter]);
+            for(int i : adjacencyList.getAdjacencyList().get(postorder[postorderCounter])){
+                postorderStack1.push(i);
+            }
+            postorderCounter++;
+        }
+
+        int i = 0;
+        while(!postorderStack2.isEmpty()){
+            postorder[i] = postorderStack2.pop();
+            i++;
+        }
+        for(int k = 0; k < postorder.length; k++){
+            System.out.println(postorder[k]);
+        }
     }
 
     // test if v is an ancestor of w
