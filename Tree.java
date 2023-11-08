@@ -1,4 +1,3 @@
-
 import java.io.*;
 
 public class Tree {
@@ -14,7 +13,8 @@ public class Tree {
         preorder = new int[N];
         postorder = new int[N];
 
-        /* enter your code */
+        AdjacencyList adjacencyList = new AdjacencyList(parent);//Create the adjacency lists of each Node;
+        adjacencyList.printAdjacencyList();
     }
 
     // traverse tree and store preorder and postorder numbering of the nodes
@@ -59,70 +59,70 @@ public class Tree {
         }
 
         Tree T = (Tree) new Tree(n, parent);
-        T.traverse();
+        // T.traverse();
 
-        int w = n / 4;
-        int u = n / 2;
-        int v = n - 1;
-        int z = 0;
+        // int w = n / 4;
+        // int u = n / 2;
+        // int v = n - 1;
+        // int z = 0;
 
-        System.out.println("" + w + " ancestor of " + u + " ? = " + T.isAncestor(w, u));
-        System.out.println("" + w + " ancestor of " + v + " ? = " + T.isAncestor(w, v));
-        System.out.println("" + w + " ancestor of " + z + " ? = " + T.isAncestor(w, z));
-        System.out.println("");
+        // System.out.println("" + w + " ancestor of " + u + " ? = " + T.isAncestor(w, u));
+        // System.out.println("" + w + " ancestor of " + v + " ? = " + T.isAncestor(w, v));
+        // System.out.println("" + w + " ancestor of " + z + " ? = " + T.isAncestor(w, z));
+        // System.out.println("");
 
-        System.out.println("" + u + " ancestor of " + w + " ? = " + T.isAncestor(u, w));
-        System.out.println("" + u + " ancestor of " + v + " ? = " + T.isAncestor(u, v));
-        System.out.println("" + u + " ancestor of " + z + " ? = " + T.isAncestor(u, z));
-        System.out.println("");
+        // System.out.println("" + u + " ancestor of " + w + " ? = " + T.isAncestor(u, w));
+        // System.out.println("" + u + " ancestor of " + v + " ? = " + T.isAncestor(u, v));
+        // System.out.println("" + u + " ancestor of " + z + " ? = " + T.isAncestor(u, z));
+        // System.out.println("");
 
-        System.out.println("" + v + " ancestor of " + w + " ? = " + T.isAncestor(v, w));
-        System.out.println("" + v + " ancestor of " + u + " ? = " + T.isAncestor(v, u));
-        System.out.println("" + v + " ancestor of " + z + " ? = " + T.isAncestor(v, z));
-        System.out.println("");
+        // System.out.println("" + v + " ancestor of " + w + " ? = " + T.isAncestor(v, w));
+        // System.out.println("" + v + " ancestor of " + u + " ? = " + T.isAncestor(v, u));
+        // System.out.println("" + v + " ancestor of " + z + " ? = " + T.isAncestor(v, z));
+        // System.out.println("");
 
-        System.out.println("" + z + " ancestor of " + w + " ? = " + T.isAncestor(z, w));
-        System.out.println("" + z + " ancestor of " + u + " ? = " + T.isAncestor(z, u));
-        System.out.println("" + z + " ancestor of " + v + " ? = " + T.isAncestor(z, v));
-        System.out.println("");
+        // System.out.println("" + z + " ancestor of " + w + " ? = " + T.isAncestor(z, w));
+        // System.out.println("" + z + " ancestor of " + u + " ? = " + T.isAncestor(z, u));
+        // System.out.println("" + z + " ancestor of " + v + " ? = " + T.isAncestor(z, v));
+        // System.out.println("");
 
-        Queue<Integer> Q;
-        int length;
+        // Queue<Integer> Q;
+        // int length;
 
-        System.out.print("Path from " + w + " to " + u + " = ");
-        Q = T.treePath(w, u);
-        length = Q.size();
-        T.printQueue(Q);
-        System.out.println("Path length = " + length + "\n");
+        // System.out.print("Path from " + w + " to " + u + " = ");
+        // Q = T.treePath(w, u);
+        // length = Q.size();
+        // T.printQueue(Q);
+        // System.out.println("Path length = " + length + "\n");
 
-        System.out.print("Path from " + w + " to " + v + " = ");
-        Q = T.treePath(w, v);
-        length = Q.size();
-        T.printQueue(Q);
-        System.out.println("Path length = " + length + "\n");
+        // System.out.print("Path from " + w + " to " + v + " = ");
+        // Q = T.treePath(w, v);
+        // length = Q.size();
+        // T.printQueue(Q);
+        // System.out.println("Path length = " + length + "\n");
 
-        System.out.print("Path from " + u + " to " + v + " = ");
-        Q = T.treePath(u, v);
-        length = Q.size();
-        T.printQueue(Q);
-        System.out.println("Path length = " + length + "\n");
+        // System.out.print("Path from " + u + " to " + v + " = ");
+        // Q = T.treePath(u, v);
+        // length = Q.size();
+        // T.printQueue(Q);
+        // System.out.println("Path length = " + length + "\n");
 
-        System.out.print("Path from " + z + " to " + w + " = ");
-        Q = T.treePath(z, w);
-        length = Q.size();
-        T.printQueue(Q);
-        System.out.println("Path length = " + length + "\n");
+        // System.out.print("Path from " + z + " to " + w + " = ");
+        // Q = T.treePath(z, w);
+        // length = Q.size();
+        // T.printQueue(Q);
+        // System.out.println("Path length = " + length + "\n");
 
-        System.out.print("Path from " + z + " to " + u + " = ");
-        Q = T.treePath(z, u);
-        length = Q.size();
-        T.printQueue(Q);
-        System.out.println("Path length = " + length + "\n");
+        // System.out.print("Path from " + z + " to " + u + " = ");
+        // Q = T.treePath(z, u);
+        // length = Q.size();
+        // T.printQueue(Q);
+        // System.out.println("Path length = " + length + "\n");
 
-        System.out.print("Path from " + z + " to " + v + " = ");
-        Q = T.treePath(z, v);
-        length = Q.size();
-        T.printQueue(Q);
-        System.out.println("Path length = " + length + "\n");
+        // System.out.print("Path from " + z + " to " + v + " = ");
+        // Q = T.treePath(z, v);
+        // length = Q.size();
+        // T.printQueue(Q);
+        // System.out.println("Path length = " + length + "\n");
     }
 }
