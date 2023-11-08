@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Collections;
 
 public class Tree {
 
@@ -32,8 +33,12 @@ public class Tree {
         Stack<Integer> postorderStack2 = new Stack<>(); //The second stack used for the postorder
         int preorderCounter = 0;
         int postorderCounter = 0;
+        int counter = 0;
 
         //For the preorder
+        for(int i = 0; i < adjacencyList.getAdjacencyList().size(); i++){
+            Collections.reverse(adjacencyList.getAdjacencyList().get(i));
+        }
         preorderStack.push(root); //First put the root in the stack
         while(!preorderStack.isEmpty()){
             preorder[preorderCounter] = preorderStack.pop();
@@ -44,6 +49,9 @@ public class Tree {
         }
 
         //For the postorder
+        for(int i = 0; i < adjacencyList.getAdjacencyList().size(); i++){
+            Collections.reverse(adjacencyList.getAdjacencyList().get(i));
+        }
         postorderStack1.push(root); //First put the root in the stack
         while(!postorderStack1.isEmpty()){
             postorder[postorderCounter] = postorderStack1.pop();
@@ -54,13 +62,10 @@ public class Tree {
             postorderCounter++;
         }
 
-        int i = 0;
+        //Copy the items from the postorderStack2 to the postorder array
         while(!postorderStack2.isEmpty()){
-            postorder[i] = postorderStack2.pop();
-            i++;
-        }
-        for(int k = 0; k < postorder.length; k++){
-            System.out.println(postorder[k]);
+            postorder[counter] = postorderStack2.pop();
+            counter++;
         }
     }
 
