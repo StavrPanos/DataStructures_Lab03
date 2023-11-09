@@ -116,35 +116,40 @@ public class Tree {
     // return the path from v to w in the tree  
     public Queue<Integer> treePath(int v, int w) {
         Queue<Integer> Q = new Queue<Integer>();
-        Queue<Integer> path = new Queue<Integer>();
-        boolean visited[] = new boolean[N];
-        int parent[] = new int[N];
+        Queue<Integer> helperQ = new Queue<Integer>();// We gonna use this as our queue an then copy the items in the Q
+        boolean visited[] = new boolean[N]; // Helps keeping track of the visited nodes
+        int parent[] = new int[N]; // Helps keeping track of the path
+
 
         if(isAncestor(v, w)){
-            visited[v] = true;
-            Q.put(v);
+            visited[v] = true; // Mark the starting node as visited
+            helperQ.put(v); // Put the starting node in the queue
     
-            while(!Q.isEmpty()){
-                int currentNode = Q.get();
+            while(!helperQ.isEmpty()){
+                int currentNode = helperQ.get();
                 for(int child : adjacencyList.getAdjacencyList().get(currentNode)){
                     if(!visited[child]){
                         visited[child] = true;
                         parent[child] = currentNode;
-                        Q.put(child);
+                        helperQ.put(child);
                     }
                 }
             }
-    
             int node = w;
             while(node != v){
-                path.put(node);
+                Q.put(node);
                 node = parent[node];
             }
-            path.put(v);
-            return path;
-        }
-        
+            Q.put(v);
 
+        }else{
+            Queue<Integer> reversePath = treePath(w, v);
+
+            // Reverse the order of elements in the reversePath
+            while (!reversePath.isEmpty()) {
+                Q.put(reversePath.get());
+            }
+        }
         return Q;
     }
 
