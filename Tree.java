@@ -67,13 +67,49 @@ public class Tree {
             postorder[counter] = postorderStack2.pop();
             counter++;
         }
+
+        //FOR DEBUGGING
+        // for(int i = 0; i < preorder.length; i++){
+        //     System.out.println(i + 1 + " -> " + preorder[i]);
+        // }
+
+        // System.out.println("----------------------");
+
+        // for(int i = 0; i < postorder.length; i++){
+        //     System.out.println(i + 1 + " -> " + postorder[i]);
+        // }
     }
 
     // test if v is an ancestor of w
     public boolean isAncestor(int v, int w) {
         boolean ans = false;
+        int positionPreorderV = 0;
+        int positionPreorderW = 0;
+        int positionPostorderV = 0;
+        int positionPostorderW = 0;
 
-        /* enter your code */
+        //Find position of v, w in preorder
+        for(int i = 0; i < preorder.length; i++){
+            if(preorder[i] == v){
+                positionPreorderV = i;
+            }else if(preorder[i] == w){
+                positionPreorderW = i;
+            }
+        }
+
+        //Find position of v,w in postorder
+        for(int i = 0; i < postorder.length; i++){
+            if(postorder[i] == v){
+                positionPostorderV = i;
+            }else if(postorder[i] == w){
+                positionPostorderW = i;
+            }
+        }
+        
+        //Check if v is before w in preorder and after w in postorder
+        if((positionPreorderV < positionPreorderW) && (positionPostorderV > positionPostorderW)){
+            ans = true;
+        }
         return ans;
     }
 
@@ -107,30 +143,30 @@ public class Tree {
 
         Tree T = (Tree) new Tree(n, parent);
         T.traverse();
-        // int w = n / 4;
-        // int u = n / 2;
-        // int v = n - 1;
-        // int z = 0;
+         int w = n / 4;
+         int u = n / 2;
+         int v = n - 1;
+         int z = 0;
 
-        // System.out.println("" + w + " ancestor of " + u + " ? = " + T.isAncestor(w, u));
-        // System.out.println("" + w + " ancestor of " + v + " ? = " + T.isAncestor(w, v));
-        // System.out.println("" + w + " ancestor of " + z + " ? = " + T.isAncestor(w, z));
-        // System.out.println("");
+         System.out.println("" + w + " ancestor of " + u + " ? = " + T.isAncestor(w, u));
+         System.out.println("" + w + " ancestor of " + v + " ? = " + T.isAncestor(w, v));
+         System.out.println("" + w + " ancestor of " + z + " ? = " + T.isAncestor(w, z));
+         System.out.println("");
 
-        // System.out.println("" + u + " ancestor of " + w + " ? = " + T.isAncestor(u, w));
-        // System.out.println("" + u + " ancestor of " + v + " ? = " + T.isAncestor(u, v));
-        // System.out.println("" + u + " ancestor of " + z + " ? = " + T.isAncestor(u, z));
-        // System.out.println("");
+         System.out.println("" + u + " ancestor of " + w + " ? = " + T.isAncestor(u, w));
+         System.out.println("" + u + " ancestor of " + v + " ? = " + T.isAncestor(u, v));
+         System.out.println("" + u + " ancestor of " + z + " ? = " + T.isAncestor(u, z));
+         System.out.println("");
 
-        // System.out.println("" + v + " ancestor of " + w + " ? = " + T.isAncestor(v, w));
-        // System.out.println("" + v + " ancestor of " + u + " ? = " + T.isAncestor(v, u));
-        // System.out.println("" + v + " ancestor of " + z + " ? = " + T.isAncestor(v, z));
-        // System.out.println("");
+         System.out.println("" + v + " ancestor of " + w + " ? = " + T.isAncestor(v, w));
+         System.out.println("" + v + " ancestor of " + u + " ? = " + T.isAncestor(v, u));
+         System.out.println("" + v + " ancestor of " + z + " ? = " + T.isAncestor(v, z));
+         System.out.println("");
 
-        // System.out.println("" + z + " ancestor of " + w + " ? = " + T.isAncestor(z, w));
-        // System.out.println("" + z + " ancestor of " + u + " ? = " + T.isAncestor(z, u));
-        // System.out.println("" + z + " ancestor of " + v + " ? = " + T.isAncestor(z, v));
-        // System.out.println("");
+         System.out.println("" + z + " ancestor of " + w + " ? = " + T.isAncestor(z, w));
+         System.out.println("" + z + " ancestor of " + u + " ? = " + T.isAncestor(z, u));
+         System.out.println("" + z + " ancestor of " + v + " ? = " + T.isAncestor(z, v));
+         System.out.println("");
 
         // Queue<Integer> Q;
         // int length;
