@@ -116,6 +116,34 @@ public class Tree {
     // return the path from v to w in the tree  
     public Queue<Integer> treePath(int v, int w) {
         Queue<Integer> Q = new Queue<Integer>();
+        Queue<Integer> path = new Queue<Integer>();
+        boolean visited[] = new boolean[N];
+        int parent[] = new int[N];
+
+        if(isAncestor(v, w)){
+            visited[v] = true;
+            Q.put(v);
+    
+            while(!Q.isEmpty()){
+                int currentNode = Q.get();
+                for(int child : adjacencyList.getAdjacencyList().get(currentNode)){
+                    if(!visited[child]){
+                        visited[child] = true;
+                        parent[child] = currentNode;
+                        Q.put(child);
+                    }
+                }
+            }
+    
+            int node = w;
+            while(node != v){
+                path.put(node);
+                node = parent[node];
+            }
+            path.put(v);
+            return path;
+        }
+        
 
         return Q;
     }
