@@ -119,9 +119,18 @@ public class Tree {
         Queue<Integer> helperQ = new Queue<Integer>();// We gonna use this as our queue an then copy the items in the Q
         boolean visited[] = new boolean[N]; // Helps keeping track of the visited nodes
         int parent[] = new int[N]; // Helps keeping track of the path
-
+        boolean foundPath = false; // Helps choosing from which node we will start (v or w)
 
         if(isAncestor(v, w)){
+            foundPath = true;
+        }else if(isAncestor(w, v)){
+            int temp = v;
+            v = w;
+            w = temp;
+            foundPath = true;
+        }
+
+        if(foundPath){
             visited[v] = true; // Mark the starting node as visited
             helperQ.put(v); // Put the starting node in the queue
     
@@ -141,14 +150,6 @@ public class Tree {
                 node = parent[node];
             }
             Q.put(v);
-
-        }else{
-            Queue<Integer> reversePath = treePath(w, v);
-
-            // Reverse the order of elements in the reversePath
-            while (!reversePath.isEmpty()) {
-                Q.put(reversePath.get());
-            }
         }
         return Q;
     }
