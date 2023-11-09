@@ -116,19 +116,50 @@ public class Tree {
     // return the path from v to w in the tree  
     public Queue<Integer> treePath(int v, int w) {
         Queue<Integer> Q = new Queue<Integer>();
-        /* enter your code */
+        boolean visited[] = new boolean[N];
+        int[] parent = new int[N];
+        
+        if(isAncestor(v, w)){
+            Q.put(v); //Put the starting node in the Queue
+    
+            while(!Q.isEmpty()){
+                int currentNode = Q.get();
+                visited[currentNode] = true;
+    
+                if(currentNode == w){ //If we reached the "final" node
+                    Queue<Integer> path = new Queue<>();
+                    int node = w;
+    
+                    while (node != v) {
+                        path.put(node);
+                        node = parent[node];
+                    }
+                    path.put(v); // Add the starting node
+                    return path;
+    
+                }else{
+                    for(int neighbor : adjacencyList.getAdjacencyList().get(currentNode)){
+                        if(!visited[neighbor]){
+                            visited[neighbor] = true;
+                            parent[neighbor] = currentNode;
+                            Q.put(neighbor);
+                        }
+                    }
+                }
+            }
+        }else{
+            treePath(w, v);
+        }
         return Q;
     }
 
     public void printQueue(Queue<Integer> Q) {
-        // remove comments if Queue is ready
-        /*
         while ( !Q.isEmpty() ) {
             int x = Q.get();
             System.out.print(" " + x + " ");
         }
         System.out.println("");
-         */
+         
     }
 
     public static void main(String[] args) {
@@ -168,43 +199,43 @@ public class Tree {
          System.out.println("" + z + " ancestor of " + v + " ? = " + T.isAncestor(z, v));
          System.out.println("");
 
-        // Queue<Integer> Q;
-        // int length;
+        Queue<Integer> Q;
+        int length;
 
-        // System.out.print("Path from " + w + " to " + u + " = ");
-        // Q = T.treePath(w, u);
-        // length = Q.size();
-        // T.printQueue(Q);
-        // System.out.println("Path length = " + length + "\n");
+        System.out.print("Path from " + w + " to " + u + " = ");
+        Q = T.treePath(w, u);
+        length = Q.size();
+        T.printQueue(Q);
+        System.out.println("Path length = " + length + "\n");
 
-        // System.out.print("Path from " + w + " to " + v + " = ");
-        // Q = T.treePath(w, v);
-        // length = Q.size();
-        // T.printQueue(Q);
-        // System.out.println("Path length = " + length + "\n");
+        System.out.print("Path from " + w + " to " + v + " = ");
+        Q = T.treePath(w, v);
+        length = Q.size();
+        T.printQueue(Q);
+        System.out.println("Path length = " + length + "\n");
 
-        // System.out.print("Path from " + u + " to " + v + " = ");
-        // Q = T.treePath(u, v);
-        // length = Q.size();
-        // T.printQueue(Q);
-        // System.out.println("Path length = " + length + "\n");
+        System.out.print("Path from " + u + " to " + v + " = ");
+        Q = T.treePath(u, v);
+        length = Q.size();
+        T.printQueue(Q);
+        System.out.println("Path length = " + length + "\n");
 
-        // System.out.print("Path from " + z + " to " + w + " = ");
-        // Q = T.treePath(z, w);
-        // length = Q.size();
-        // T.printQueue(Q);
-        // System.out.println("Path length = " + length + "\n");
+        System.out.print("Path from " + z + " to " + w + " = ");
+        Q = T.treePath(z, w);
+        length = Q.size();
+        T.printQueue(Q);
+        System.out.println("Path length = " + length + "\n");
 
-        // System.out.print("Path from " + z + " to " + u + " = ");
-        // Q = T.treePath(z, u);
-        // length = Q.size();
-        // T.printQueue(Q);
-        // System.out.println("Path length = " + length + "\n");
+        System.out.print("Path from " + z + " to " + u + " = ");
+        Q = T.treePath(z, u);
+        length = Q.size();
+        T.printQueue(Q);
+        System.out.println("Path length = " + length + "\n");
 
-        // System.out.print("Path from " + z + " to " + v + " = ");
-        // Q = T.treePath(z, v);
-        // length = Q.size();
-        // T.printQueue(Q);
-        // System.out.println("Path length = " + length + "\n");
+        System.out.print("Path from " + z + " to " + v + " = ");
+        Q = T.treePath(z, v);
+        length = Q.size();
+        T.printQueue(Q);
+        System.out.println("Path length = " + length + "\n");
     }
 }
