@@ -116,39 +116,42 @@ public class Tree {
     // return the path from v to w in the tree  
     public Queue<Integer> treePath(int v, int w) {
         Queue<Integer> Q = new Queue<Integer>();
-        boolean visited[] = new boolean[N];
-        int[] parent = new int[N];
-        
-        if(isAncestor(v, w)){
-            Q.put(v); //Put the starting node in the Queue
-    
-            while(!Q.isEmpty()){
-                int currentNode = Q.get();
-                visited[currentNode] = true;
-    
-                if(currentNode == w){ //If we reached the "final" node
-                    Queue<Integer> path = new Queue<>();
-                    int node = w;
-    
-                    while (node != v) {
-                        path.put(node);
-                        node = parent[node];
-                    }
-                    path.put(v); // Add the starting node
-                    return path;
-    
-                }else{
-                    for(int neighbor : adjacencyList.getAdjacencyList().get(currentNode)){
-                        if(!visited[neighbor]){
-                            visited[neighbor] = true;
-                            parent[neighbor] = currentNode;
-                            Q.put(neighbor);
-                        }
-                    }
+        boolean[] visited = new boolean[preorder.length];
+        Stack<Integer> stack = new Stack<>();
+        int[] parent = new int[preorder.length];
+
+        int positionV = 0;
+        int positionW = 0;
+
+        //Find the position of v, w in the preorder array
+        for(int i = 0; i < preorder.length; i++){
+            if(preorder[i] == v){
+                positionV = i;
+            }else if(preorder[i] == w){
+                positionW = i;
+            }
+        }
+
+        stack.push(positionV);
+        while(!stack.isEmpty()){
+            int current = stack.pop();
+            visited[current] = true;
+
+            if(current == positionW){
+                while(current != positionV){
+                    Q.put(current);
+                    current = parent[current];
+                }
+                Q.put(positionV);
+                break;
+            }
+
+            for(int neighbor : adjacencyList.getAdjacencyList().get(current)){
+                if (!visited[neighbor]) {
+                    stack.push(neighbor);
+                    parent[neighbor] = current;
                 }
             }
-        }else{
-            treePath(w, v);
         }
         return Q;
     }
