@@ -116,43 +116,7 @@ public class Tree {
     // return the path from v to w in the tree  
     public Queue<Integer> treePath(int v, int w) {
         Queue<Integer> Q = new Queue<Integer>();
-        boolean[] visited = new boolean[preorder.length];
-        Stack<Integer> stack = new Stack<>();
-        int[] parent = new int[preorder.length];
 
-        int positionV = 0;
-        int positionW = 0;
-
-        //Find the position of v, w in the preorder array
-        for(int i = 0; i < preorder.length; i++){
-            if(preorder[i] == v){
-                positionV = i;
-            }else if(preorder[i] == w){
-                positionW = i;
-            }
-        }
-
-        stack.push(positionV);
-        while(!stack.isEmpty()){
-            int current = stack.pop();
-            visited[current] = true;
-
-            if(current == positionW){
-                while(current != positionV){
-                    Q.put(current);
-                    current = parent[current];
-                }
-                Q.put(positionV);
-                break;
-            }
-
-            for(int neighbor : adjacencyList.getAdjacencyList().get(current)){
-                if (!visited[neighbor]) {
-                    stack.push(neighbor);
-                    parent[neighbor] = current;
-                }
-            }
-        }
         return Q;
     }
 
