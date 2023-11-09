@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.io.*;
 
 public class AdjacencyList{
     private ArrayList<ArrayList<Integer>> adjacencyList;

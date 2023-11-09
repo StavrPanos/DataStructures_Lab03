@@ -1,5 +1,3 @@
-import java.io.*;
-
 // implementation of a pushdown stack
 public class Stack<Item> {
     private Node head;
